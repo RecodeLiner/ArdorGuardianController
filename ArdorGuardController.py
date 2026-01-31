@@ -1,3 +1,6 @@
+import hid
+import time
+
 class ArdorGuardianController:
     def __init__(self):
         self.vendor_id = 0x320F
