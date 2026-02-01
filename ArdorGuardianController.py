@@ -116,6 +116,12 @@ class ArdorGuardianController:
     def set_side_to_side_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x10, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
+    def set_shimmering_color_mode(self, brightness=4, isFromCenter=False, save_to_memory=False):
+        self.set_effect(0x12, brightness = brightness, param=not(isFromCenter), save_to_memory=save_to_memory)
+
+    def set_disabled_mode(self, save_to_memory=False):
+        self.set_effect(0x14, save_to_memory=save_to_memory)
+
     def close(self):
         if self.device:
             try:
