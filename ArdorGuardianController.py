@@ -69,22 +69,25 @@ class ArdorGuardianController:
         self.device.write(packet)
         
     def set_static_color(self, r, g, b, brightness=4, save_to_memory=False):
-        self.set_effect(0x06, r, g, b, brightness, speed=0x0, isClockwise=False, save_to_memory=save_to_memory)
+        self.set_effect(0x06, r, g, b, brightness, speed=0x0, save_to_memory=save_to_memory)
 
     def set_arrow_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x09, r, g, b, brightness, speed, isClockwise=False, save_to_memory=save_to_memory)
+        self.set_effect(0x09, r, g, b, brightness, speed, save_to_memory=save_to_memory)
 
     def set_waterfall_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
         self.set_effect(0x03, r, g, b, brightness, speed, isClockwise=isClockwise, save_to_memory=save_to_memory)
 
     def set_breath_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x05, r, g, b, brightness, speed, isClockwise=False, save_to_memory=save_to_memory)
+        self.set_effect(0x05, r, g, b, brightness, speed, save_to_memory=save_to_memory)
 
     def set_wave_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x08, r, g, b, brightness, speed, isClockwise=False, save_to_memory=save_to_memory)
+        self.set_effect(0x08, r, g, b, brightness, speed, save_to_memory=save_to_memory)
 
     def set_impulse_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
         self.set_effect(0x02, r, g, b, brightness, speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
+
+    def set_interactive_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
+        self.set_effect(0x07, r, g, b, brightness, speed, save_to_memory=save_to_memory)
 
     def close(self):
         if self.device:
