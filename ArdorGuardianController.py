@@ -113,6 +113,9 @@ class ArdorGuardianController:
     def set_running_drops_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x0f, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
+    def set_side_to_side_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
+        self.set_effect(0x10, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
+
     def close(self):
         if self.device:
             try:
