@@ -107,6 +107,9 @@ class ArdorGuardianController:
     def set_wave_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x0d, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
+    def set_geometric_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
+        self.set_effect(0x0e, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
+
     def close(self):
         if self.device:
             try:
