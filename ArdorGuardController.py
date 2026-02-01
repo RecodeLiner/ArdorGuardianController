@@ -71,22 +71,47 @@ class ArdorGuardianController:
         packet += [0x00] * (64 - len(packet))
         self.device.write(packet)
 
-    def set_breath_mode(self, r, g, b, brightness=4, duration=2, save_to_memory=False):
+    def set_breath_mode(self, r, g, b, brightness=4, speed=2, save_to_memory=False):
         if not self.device:
             return
         
         if not 0 <= brightness <= 4:
             brightness = 4
-        if not 0 <= duration <= 4:
-            duration = 2
+        if not 0 <= speed <= 4:
+            speed = 2
         
         cmd = 0x32 if not save_to_memory else 0x42
         
         packet = [
             0x04, cmd, 0x01, 0x06,
             0x22, 0x00, 0x00, 0x00,
-            0x00, 0x05, brightness, duration,
+            0x00, 0x05, brightness, speed,
             0x00, 0x00, r, g, b
+        ]
+        packet += [0x00] * (64 - len(packet))
+        
+        self.device.write(packet)
+    
+    def set_waterfall_mode(self, r, g, b, brightness=4, speed=2, clockwise=True, save_to_memory=False):
+        if not self.device:
+            return
+        
+        if not 0 <= brightness <= 4:
+            brightness = 4
+        if not 0 <= speed <= 4:
+            speed = 2
+        
+        cmd = 0x31 if clockwise else 0x30
+        if save_to_memory:
+            cmd += 0x10  # 0x41 or 0x40
+        
+        direction = 0x01 if clockwise else 0x00
+        
+        packet = [
+            0x04, cmd, 0x01, 0x06,
+            0x22, 0x00, 0x00, 0x00,
+            0x00, 0x03, brightness, speed,  # 0x03 - waterfall
+            direction, 0x00, r, g, b
         ]
         packet += [0x00] * (64 - len(packet))
         
