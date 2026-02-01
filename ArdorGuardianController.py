@@ -47,7 +47,7 @@ class ArdorGuardianController:
         self.device.write([0x04, 0x01, 0x00, 0x01] + [0x00] * 60)
         time.sleep(0.05)
 
-    def set_effect(self, effect_type, r = 0x00, g = 0x00, b = 0x00, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
+    def set_effect(self, effect_type, r = 0x00, g = 0x00, b = 0x00, brightness=4, speed=0, param=False, save_to_memory=False):
         if not self.device:
             return
         
@@ -62,20 +62,20 @@ class ArdorGuardianController:
             0x04, cmd, 0x01, 0x06,
             0x22, 0x00, 0x00, 0x00,
             0x00, effect_type, brightness, speed,
-            isClockwise, 0x00, r, g, b
+            param, 0x00, r, g, b
         ]
         packet += [0x00] * (64 - len(packet))
         
         self.device.write(packet)
 
-    def set_pulse_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
-        self.set_effect(0x01, r = r, g = g, b = b, brightness = brightness, speed = speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
+    def set_pulse_mode(self, r, g, b, brightness=4, speed=0, isLeftToRight=False, save_to_memory=False):
+        self.set_effect(0x01, r = r, g = g, b = b, brightness = brightness, speed = speed, param=not(isLeftToRight), save_to_memory=save_to_memory)
 
-    def set_impulse_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
-        self.set_effect(0x02, r = r, g = g, b = b, brightness = brightness, speed = speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
+    def set_impulse_mode(self, r, g, b, brightness=4, speed=0, isLeftToRight=False, save_to_memory=False):
+        self.set_effect(0x02, r = r, g = g, b = b, brightness = brightness, speed = speed, param=not(isLeftToRight), save_to_memory=save_to_memory)
 
     def set_waterfall_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
-        self.set_effect(0x03, r = r, g = g, b = b, brightness = brightness, speed = speed, isClockwise=isClockwise, save_to_memory=save_to_memory)
+        self.set_effect(0x03, r = r, g = g, b = b, brightness = brightness, speed = speed, param=isClockwise, save_to_memory=save_to_memory)
 
     def set_rainbow_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x04, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
