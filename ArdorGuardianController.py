@@ -98,6 +98,9 @@ class ArdorGuardianController:
     def set_flicker_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x0a, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
+    def set_rainbow_mosaic_mode(self, brightness=4, speed=0, save_to_memory=False):
+        self.set_effect(0x0b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
+
     def close(self):
         if self.device:
             try:
