@@ -101,6 +101,9 @@ class ArdorGuardianController:
     def set_rainbow_mosaic_mode(self, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x0b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
+    def set_rainbow_waterfall_mode(self, brightness=4, speed=0, isTopToBottom=False, save_to_memory=False):
+        self.set_effect(0x0c, brightness = brightness, speed = speed, param=not(isTopToBottom), save_to_memory=save_to_memory)
+
     def close(self):
         if self.device:
             try:
