@@ -95,6 +95,9 @@ class ArdorGuardianController:
     def set_arrow_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x09, r, g, b, brightness, speed, save_to_memory=save_to_memory)
 
+    def set_flicker_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
+        self.set_effect(0x0a, r, g, b, brightness, speed, save_to_memory=save_to_memory)
+
     def close(self):
         if self.device:
             try:
