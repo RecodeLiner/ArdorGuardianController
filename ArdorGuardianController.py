@@ -89,6 +89,9 @@ class ArdorGuardianController:
     def set_interactive_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x07, r, g, b, brightness, speed, save_to_memory=save_to_memory)
 
+    def set_pulse_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
+        self.set_effect(0x01, r, g, b, brightness, speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
+
     def close(self):
         if self.device:
             try:
