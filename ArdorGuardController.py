@@ -71,6 +71,27 @@ class ArdorGuardianController:
         packet += [0x00] * (64 - len(packet))
         self.device.write(packet)
 
+    def set_breath_mode(self, r, g, b, brightness=4, duration=2, save_to_memory=False):
+        if not self.device:
+            return
+        
+        if not 0 <= brightness <= 4:
+            brightness = 4
+        if not 0 <= duration <= 4:
+            duration = 2
+        
+        cmd = 0x32 if not save_to_memory else 0x42
+        
+        packet = [
+            0x04, cmd, 0x01, 0x06,
+            0x22, 0x00, 0x00, 0x00,
+            0x00, 0x05, brightness, duration,
+            0x00, 0x00, r, g, b
+        ]
+        packet += [0x00] * (64 - len(packet))
+        
+        self.device.write(packet)
+
     def close(self):
         if self.device:
             try:
