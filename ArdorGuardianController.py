@@ -47,7 +47,7 @@ class ArdorGuardianController:
         self.device.write([0x04, 0x01, 0x00, 0x01] + [0x00] * 60)
         time.sleep(0.05)
 
-    def set_effect(self, effect_type, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
+    def set_effect(self, effect_type, r = 0x00, g = 0x00, b = 0x00, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
         if not self.device:
             return
         
@@ -69,34 +69,34 @@ class ArdorGuardianController:
         self.device.write(packet)
 
     def set_pulse_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
-        self.set_effect(0x01, r, g, b, brightness, speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
+        self.set_effect(0x01, r = r, g = g, b = b, brightness = brightness, speed = speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
 
     def set_impulse_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
-        self.set_effect(0x02, r, g, b, brightness, speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
+        self.set_effect(0x02, r = r, g = g, b = b, brightness = brightness, speed = speed, isClockwise=not(isClockwise), save_to_memory=save_to_memory)
 
     def set_waterfall_mode(self, r, g, b, brightness=4, speed=0, isClockwise=False, save_to_memory=False):
-        self.set_effect(0x03, r, g, b, brightness, speed, isClockwise=isClockwise, save_to_memory=save_to_memory)
+        self.set_effect(0x03, r = r, g = g, b = b, brightness = brightness, speed = speed, isClockwise=isClockwise, save_to_memory=save_to_memory)
 
     def set_rainbow_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x04, r, g, b, brightness, speed, save_to_memory=save_to_memory)
+        self.set_effect(0x04, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
     def set_breath_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x05, r, g, b, brightness, speed, save_to_memory=save_to_memory)
+        self.set_effect(0x05, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
     def set_static_color(self, r, g, b, brightness=4, save_to_memory=False):
-        self.set_effect(0x06, r, g, b, brightness, save_to_memory=save_to_memory)
+        self.set_effect(0x06, r = r, g = g, b = b, brightness = brightness, save_to_memory=save_to_memory)
 
     def set_interactive_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x07, r, g, b, brightness, speed, save_to_memory=save_to_memory)
+        self.set_effect(0x07, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
     def set_wave_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x08, r, g, b, brightness, speed, save_to_memory=save_to_memory)
+        self.set_effect(0x08, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
     def set_arrow_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x09, r, g, b, brightness, speed, save_to_memory=save_to_memory)
+        self.set_effect(0x09, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
     def set_flicker_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
-        self.set_effect(0x0a, r, g, b, brightness, speed, save_to_memory=save_to_memory)
+        self.set_effect(0x0a, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
     def close(self):
         if self.device:
