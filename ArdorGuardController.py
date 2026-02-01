@@ -33,7 +33,6 @@ class ArdorGuardianController:
     def _finalize(self):
         self.device.write([0x04, 0x02, 0x00, 0x02] + [0x00] * 60)
 
-
     def connect(self):
         self.path = self._get_device_path()
         if not self.path:
