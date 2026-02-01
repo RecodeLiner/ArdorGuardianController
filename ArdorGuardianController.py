@@ -47,7 +47,7 @@ class ArdorGuardianController:
         self.device.write([0x04, 0x01, 0x00, 0x01] + [0x00] * 60)
         time.sleep(0.05)
         
-    def set_color(self, r, g, b, brightness=4, save_to_memory=False):
+    def set_static_color(self, r, g, b, brightness=4, save_to_memory=False):
         if not self.device:
             return
 
@@ -125,16 +125,13 @@ class ArdorGuardianController:
         if not 0 <= speed <= 4:
             speed = 0
         
-        cmd = 0xb8
-        if save_to_memory:
-            cmd += 0x10
+        cmd = 0xb8 if not save_to_memory else 0xc8
         
         packet = [
             0x04, cmd, 0x02, 0x06,
             0x22, 0x00, 0x00, 0x00,
             0x00, 0x09, brightness, speed,
-            0x01, 0x00, 0x00, 0x00,
-            r, g, b
+            0x01, 0x00, r, g, b
         ]
         packet += [0x00] * (64 - len(packet))
         
