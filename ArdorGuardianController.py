@@ -116,6 +116,30 @@ class ArdorGuardianController:
         
         self.device.write(packet)
 
+    def set_arrow_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
+        if not self.device:
+            return
+        
+        if not 0 <= brightness <= 4:
+            brightness = 4
+        if not 0 <= speed <= 4:
+            speed = 0
+        
+        cmd = 0xb8
+        if save_to_memory:
+            cmd += 0x10
+        
+        packet = [
+            0x04, cmd, 0x02, 0x06,
+            0x22, 0x00, 0x00, 0x00,
+            0x00, 0x09, brightness, speed,
+            0x01, 0x00, 0x00, 0x00,
+            r, g, b
+        ]
+        packet += [0x00] * (64 - len(packet))
+        
+        self.device.write(packet)
+
     def close(self):
         if self.device:
             try:
