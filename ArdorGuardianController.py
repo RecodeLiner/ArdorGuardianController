@@ -89,7 +89,7 @@ class ArdorGuardianController:
     def set_interactive_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x07, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
-    def set_wave_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
+    def set_wave_input_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
         self.set_effect(0x08, r = r, g = g, b = b, brightness = brightness, speed = speed, save_to_memory=save_to_memory)
 
     def set_arrow_mode(self, r, g, b, brightness=4, speed=0, save_to_memory=False):
