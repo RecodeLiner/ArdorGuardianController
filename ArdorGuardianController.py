@@ -2,11 +2,12 @@ import hid
 import time
 
 class ArdorGuardianController:
-    def __init__(self):
+    def __init__(self, wireless=False):
         self.vendor_id = 0x320F
-        self.product_id = 0x5055
+        self.product_id = 0x5088 if wireless else 0x5055
         self.device = None
         self.path = None
+        self.wireless = wireless
 
     def _get_device_path(self):
         devices = hid.enumerate(self.vendor_id, self.product_id)
